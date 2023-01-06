@@ -13,4 +13,3 @@ function isYoutubeShortURL(url)
 {
 	return url !== undefined && url.includes("youtube.com/shorts/");
 }
-
