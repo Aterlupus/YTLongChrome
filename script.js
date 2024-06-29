@@ -1,12 +1,23 @@
 chrome.runtime.onMessage.addListener(function(request) {
-	if (request.message === 'YTLong' && isOnYoutubeShort()) {
-		document.location = "https://www.youtube.com/watch?v=" + getCurrentVideoId();
+	if (isYTLongMessage(request) && isOnYoutubeShort()) {
+		redirectToYoutubeLong();
 	}
 });
+
+function isYTLongMessage(request)
+{
+	return request.message === 'YTLong';
+}
 
 function isOnYoutubeShort()
 {
 	return document.URL.includes("youtube.com/shorts/");
+}
+
+function redirectToYoutubeLong()
+{
+	let url = "https://www.youtube.com/watch?v=" + getCurrentVideoId();
+	window.location.replace(url);
 }
 
 function getCurrentVideoId()
