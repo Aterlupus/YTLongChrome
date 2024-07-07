@@ -1,6 +1,7 @@
+
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo) {
-	if (isOnYoutubeShort(changeInfo)) {
-		runRedirection(tabId);
+	if (isOnYouTubeShort(changeInfo)) {
+		runIfExtensionEnabled(() => runRedirection(tabId));
 	}
 });
 
@@ -16,12 +17,12 @@ function runRedirection(tabId, repeatNo = 0)
 	});
 }
 
-function isOnYoutubeShort(changeInfo)
+function isOnYouTubeShort(changeInfo)
 {
-	return changeInfo !== undefined && changeInfo.status === 'loading' && isYoutubeShortURL(changeInfo.url);
+	return changeInfo !== undefined && changeInfo.status === 'loading' && isYouTubeShortURL(changeInfo.url);
 }
 
-function isYoutubeShortURL(url)
+function isYouTubeShortURL(url)
 {
 	return url !== undefined && url.includes("youtube.com/shorts/");
 }
@@ -29,4 +30,12 @@ function isYoutubeShortURL(url)
 function getRerunTimeout(repeatNo)
 {
 	return repeatNo * 10;
+}
+
+function runIfExtensionEnabled(callback) {
+	chrome.storage.sync.get('enabled', function(data) {
+		if (data['enabled'] ?? true) {
+			callback();
+		}
+	});
 }

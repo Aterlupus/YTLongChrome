@@ -1,0 +1,39 @@
+
+#extension-popup {
+    width: 100px;
+}
+
+.status {
+    border: 4px solid;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.status-on {
+    display: none;
+    color: green;
+    border-color: green;
+}
+
+.status-off {
+    color: red;
+    border-color: red;
+}
+
+#extension-popup.enabled .status-off {
+    display: none;
+}
+
+#extension-popup.enabled .status-on {
+    display: block;
+}
+
+#on-off-button {
+    width: 100px;
+    height: 100px;
+}
+
+#extension-popup.enabled #on-off-button {
+    filter: invert(13%) sepia(67%) saturate(7158%) hue-rotate(358deg) brightness(103%) contrast(116%);
+}

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Youtube Long",
+  "name": "YouTube Long",
   "version": "1.0",
-  "description": "Releases you from suffering brought by Youtube Shorts view by simply redirecting you to normal view whenever you land there ;-)",
+  "description": "Releases you from suffering brought by YouTube Shorts view by simply redirecting you to normal view whenever you land there ;-)",
   "icons": {
     "16": "icon/icon16.png",
     "32": "icon/icon32.png",
@@ -19,6 +19,11 @@
     }
   ],
   "permissions": [
-    "tabs"
-  ]
+    "tabs",
+    "storage"
+  ],
+  "action": {
+    "default_title": "YouTube Long",
+    "default_popup": "popup.html"
+  }
 }

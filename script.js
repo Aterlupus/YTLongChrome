@@ -2,12 +2,12 @@
 // Replace all short URLS with long URLs
 //TODO: replace deprecated DOMNodeInserted
 document.addEventListener('DOMNodeInserted', function() {
-	convertShortHrefsToLong();
+	runIfExtensionEnabled(() => convertShortHrefsToLong());
 });
 
 // In case user gets to a short regardless, redirect to long
 chrome.runtime.onMessage.addListener(function(request) {
-	if (isYTLongMessage(request) && isOnYoutubeShort()) {
+	if (isYTLongMessage(request) && isOnYouTubeShort()) {
 		redirectToYoutubeLong();
 	}
 });
@@ -17,7 +17,7 @@ function isYTLongMessage(request)
 	return request.message === 'YTLong';
 }
 
-function isOnYoutubeShort()
+function isOnYouTubeShort()
 {
 	return document.URL.includes("youtube.com/shorts/");
 }
@@ -41,5 +41,13 @@ function convertShortHrefsToLong()
 	$("a[href*='shorts']").each(function() {
 		let href = $(this).attr('href');
 		$(this).attr('href', href.replace(/\/shorts\//, '/watch?v='));
+	});
+}
+
+function runIfExtensionEnabled(callback) {
+	chrome.storage.sync.get('enabled', function(data) {
+		if (data['enabled'] ?? true) {
+			callback();
+		}
 	});
 }
