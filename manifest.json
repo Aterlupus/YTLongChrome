@@ -10,12 +10,15 @@
     "128": "icon/icon128.png"
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "js/background.js"
   },
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["jquery-3.7.1.slim.min.js", "script.js"]
+      "js": [
+        "vendor/jquery-3.7.1.slim.min.js",
+        "js/script.js"
+      ]
     }
   ],
   "permissions": [
@@ -24,6 +27,6 @@
   ],
   "action": {
     "default_title": "YouTube Long",
-    "default_popup": "popup.html"
+    "default_popup": "popup/popup.html"
   }
 }
