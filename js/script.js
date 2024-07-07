@@ -1,4 +1,6 @@
 
+//TODO: consider: counter for how many times the user has been redirected or used transformed url
+
 // Replace all short URLS with long URLs
 //TODO: replace deprecated DOMNodeInserted
 document.addEventListener('DOMNodeInserted', function() {

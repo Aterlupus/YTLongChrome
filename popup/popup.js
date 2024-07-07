@@ -2,7 +2,7 @@
 $(document).ready(function() {
     initializeButtonState();
 
-    $('#on-off-button').click(function() {
+    $('.button').click(function() {
         toggleExtensionState();
     });
 });
